@@ -36,12 +36,12 @@ $(NAME): $(OBJ)
 	@make -C $(LIBF_DIR)
 	@make bonus -C $(LIBF_DIR)
 	@echo $(CURSIVE)$(GRAY) "     - Compiling $(NAME)..." $(NONE)
-	@gcc $(FLAGS) $(OBJ) $(LIBFT) $(INCLUDE) -o $(NAME)
+	@gcc -g $(FLAGS) $(OBJ) $(LIBFT) $(INCLUDE) -o $(NAME)
 	@echo $(GREEN)"- Compiled -"$(NONE)
 
 $(OBJ): $(SRC)
 	@echo $(CURSIVE)$(GRAY) "     - Making object files..." $(NONE)
-	@gcc $(FALGS) -c $(SRC)
+	@gcc -g $(FALGS) -c $(SRC)
 
 exe: re
 	@make -C ./ clean

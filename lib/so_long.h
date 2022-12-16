@@ -4,12 +4,21 @@
 # include "../src/libft.h"
 # include "../minilibx-linux/mlx.h"
 
-typedef struct struct_mlx
+/*typedef struct struct_mlx
 {
 	void	*mlx;
 	void	*mlx_win;
-}mlx;
+}mlx;*/
+typedef struct struct_mlx
+{
+	void	*mlx;
+	void	*win;
+    void    *img;
+    char	**relative_path;
+    int		img_width;
+	int		img_height;
 
+}t_mlx;
 typedef struct s_vector
 {
 	int	x;

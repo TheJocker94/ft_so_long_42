@@ -21,7 +21,7 @@ SRC_GAME = $(addprefix game/, $(GAME))
 OBJ = *.o
 
 FLAGS = -Wall -Wextra -Werror
-INCLUDE = minilibx-linux/libmlx.a -no-pie -lm -lX11 -lXext
+INCLUDE = minilibx/libmlx.a -no-pie -lm -lX11 -lXext
 
 NONE='\033[0m'
 GREEN='\033[32m'
@@ -35,6 +35,7 @@ $(NAME): $(OBJ)
 	@echo $(CURSIVE)$(GRAY) "     - Making libft..." $(NONE)
 	@make -C $(LIBF_DIR)
 	@make bonus -C $(LIBF_DIR)
+	@make -C minilibx
 	@echo $(CURSIVE)$(GRAY) "     - Compiling $(NAME)..." $(NONE)
 	@gcc -g $(FLAGS) $(OBJ) $(LIBFT) $(INCLUDE) -o $(NAME)
 	@echo $(GREEN)"- Compiled -"$(NONE)
@@ -76,10 +77,12 @@ clean:
 	@echo $(CURSIVE)$(GRAY) "     - Removing object files..." $(NONE)
 	@rm -rf $(OBJ)
 	@make -C $(LIBF_DIR) clean
+	@make -C minilibx clean
 
 fclean: clean
 	@echo $(CURSIVE)$(GRAY) "     - Removing $(NAME)..." $(NONE)
 	@rm -rf $(NAME)
 	@make -C $(LIBF_DIR) fclean
+	@make -C minilibx clean
 
 re: fclean all

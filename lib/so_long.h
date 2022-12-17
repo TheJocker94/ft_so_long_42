@@ -2,7 +2,7 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 # include "../src/libft.h"
-# include "../minilibx-linux/mlx.h"
+# include "../minilibx/mlx.h"
 
 /*typedef struct struct_mlx
 {

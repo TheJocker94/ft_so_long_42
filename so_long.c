@@ -63,17 +63,17 @@ int	key_input(int keycode, t_mlx *vars)
 int main(void)
 {
 	t_mlx	init;
-/*	char *path_ber;
+	char *path_ber;
 	char **array_map;
-	int x;
-	int y;
+//	int x;
+//	int y;
 
-	x = 0;
-	y = 0;
-*/
+//	x = 0;
+//	y = 0;
+
 	init.mlx = mlx_init();
-//	path_ber = "test.ber";
-//	array_map = ft_get_map(path_ber);
+	path_ber = "test.ber";
+	array_map = ft_get_map(path_ber);
 
 	/*while(array_map[x][y])
 	{
@@ -89,6 +89,6 @@ int main(void)
 	mlx_hook(init.win, 17, 0, ft_close, (void *)0);
 
 	mlx_loop(init.mlx);
-	//free(array_map);
+	free(array_map);
 	return(0);
 }

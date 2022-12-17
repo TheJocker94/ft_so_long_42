@@ -15,6 +15,7 @@ typedef struct struct_mlx
 	void	*win;
     void    *img;
     char	**relative_path;
+	char	**map;
     int		img_width;
 	int		img_height;
 

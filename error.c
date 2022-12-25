@@ -3,16 +3,16 @@
 void	ft_error_map(char *error, t_mlx *init, char *map)
 {
 	free(map);
-	mlx_destroy_display(init->mlx);
-	free(init->mlx);
+	(void)init;
+
 	ft_putstr_fd(error, 2);
 	exit (0);
 }
 
 int	ft_close_error(t_mlx *init)
 {
-	mlx_destroy_display(init->mlx);
-	free(init->mlx);
+	//mlx_destroy_display(init->mlx);
+	//free(init->mlx);
 	ft_freemap(init);
 	exit(0);
 	return (0);

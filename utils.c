@@ -58,12 +58,12 @@ int	check_map(char *map, t_mlx *init)
 		}
 		check_map_logic(init, map, f, len);
 		if (map[i] == '\n' && map[i + 1] == '\0')
-			ft_error_map("Error! Invalid map\n", init, map);
+			ft_error_map("Error! Invalid map\n", map);
 		i++;
 	}
 	if ((init->check.exit > 1 || init->check.player > 1)
 		|| (init->check.exit == 0 || init->check.player == 0))
-		ft_error_map("Error! Invalid map\n", init, map);
+		ft_error_map("Error! Invalid map\n", map);
 	return (1);
 }
 
@@ -73,7 +73,7 @@ void	check_map_logic(t_mlx *init, char *map, int f, int len)
 	{
 		init->check.line_2 = len;
 		if (init->check.line_2 != init->check.line_1)
-			ft_error_map("Error! Invalid map\n", init, map);
+			ft_error_map("Error! Invalid map\n", map);
 		len = 0;
 	}
 	else if (f == 1)

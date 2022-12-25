@@ -64,7 +64,7 @@ void	ft_counter(t_mlx *init);
 void	ft_print_and_destroy(t_mlx *init, char *path, int x, int y);
 void	ft_reset_map(t_mlx *init);
 void	ft_restart(t_mlx *init);
-void	ft_error_map(char *error, t_mlx *init, char *map);
+void	ft_error_map(char *error,char *map);
 void	ft_error_border(t_mlx *init);
 int		ft_close_error(t_mlx *init);
 void	ft_freemap(t_mlx *init);

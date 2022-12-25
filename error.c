@@ -1,10 +1,8 @@
 #include "so_long.h"
 
-void	ft_error_map(char *error, t_mlx *init, char *map)
+void	ft_error_map(char *error, char *map)
 {
 	free(map);
-	(void)init;
-
 	ft_putstr_fd(error, 2);
 	exit (0);
 }

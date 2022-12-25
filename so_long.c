@@ -25,12 +25,13 @@ char	*ft_get_map(char *path_ber)
 	free(path);
 	return (str);
 }
+
 void	start(t_mlx *init, int ac, char **av)
 {
+	char	*array_map;
+
 	if (ac == 2)
 	{
-		char	*array_map;
-
 		init->collectible = 0;
 		init->moves = 0;
 		array_map = ft_get_map(av[1]);
@@ -45,6 +46,7 @@ void	start(t_mlx *init, int ac, char **av)
 		exit (0);
 	}
 }
+
 int	main(int ac, char **av)
 {
 	t_mlx	init;

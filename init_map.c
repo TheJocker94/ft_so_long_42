@@ -59,39 +59,31 @@ void	ft_init_map_logic(t_mlx *init, int x, int y)
 		init->map[y][x].down = &init->map[y + 1][x];
 }
 
-void	ft_init_map(t_mlx *init, char *map)
+void	ft_init_map(t_mlx *init, char *map, int x, int y)
 {
-	int	x;
-	int	y;
-	int	i;
 	int	xbuff;
 	int	ybuff;
 
-	x = 0;
-	y = 0;
-	i = 0;
 	xbuff = 20;
 	ybuff = 20;
-	while (map[i])
+	while (*map != '\0')
 	{
-		if (map[i] == '\n')
+		if (*map == '\n')
 		{
 			ybuff += SIZE;
 			y++;
 			xbuff = 20;
 			x = 0;
-			i++;
+			map++;
 		}
 		if (!init->map[y])
 			break ;
 		init->map[y][x].position.x = xbuff;
 		init->map[y][x].position.y = ybuff;
-		init->map[y][x].type = map[i];
-		init->map[y][x].ori_type = map[i];
+		init->map[y][x].type = *map;
 		ft_init_map_logic(init, x, y);
 		xbuff += SIZE;
 		x++;
-		i++;
+		map++;
 	}
-	free(map);
 }

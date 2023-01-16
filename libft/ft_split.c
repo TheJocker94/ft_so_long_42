@@ -3,73 +3,133 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgirardi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ocastell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/14 18:43:34 by mgirardi          #+#    #+#             */
-/*   Updated: 2022/10/14 18:43:41 by mgirardi         ###   ########.fr       */
+/*   Created: 2022/10/11 10:37:01 by ocastell          #+#    #+#             */
+/*   Updated: 2022/10/11 10:37:07 by ocastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	count_words(const char *s, char c)
+static	char	*ft_strcpy(char *dest, const char *src)
 {
-	int	count;
-	int	check;
+	int	i;
 
-	count = 0;
-	check = 0;
-	while (*s)
+	i = 0;
+	while (src[i] != '\0')
 	{
-		if (*s != c && check == 0)
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
+
+static	char	*ft_strlength(char const *str, char c, int i)
+{
+	int		j;
+	char	*string;
+
+	j = 0;
+	string = (char *)malloc((ft_strlen(str) + 1) * sizeof(*string));
+	if (!string)
+		return (NULL);
+	while (str[i] == c)
+		i++;
+	while (str[i])
+	{
+		*string = str[i];
+		if (str[i + 1] == c || str[i + 1] == '\0')
 		{
-			check = 1;
-			count++;
+			string++;
+			j++;
+			*string = '\0';
+			return (string - j);
 		}
-		else if (*s == c)
-			check = 0;
-		s++;
+		string++;
+		j++;
+		i++;
+	}
+	return (0);
+}
+
+static	int	str_count(char const *str, char c)
+{
+	int	i;
+	int	count;
+	int	def;
+
+	i = 0;
+	count = 0;
+	def = 1;
+	while (str[i])
+	{
+		if (str[i] == c && def == 0)
+		{
+			def = 1;
+		}
+		if (str[i] != c && def == 1)
+		{
+			count++;
+			def = 0;
+		}
+		i++;
 	}
 	return (count);
 }
 
-static char	*word_str(const char *s, int start, int finish)
+static	char	**creat_splits(char const *s, char **split, char c)
 {
 	int		i;
-	char	*str;
+	int		len;
+	int		str_num;
+	char	*string;
+	int		count;
 
 	i = 0;
-	str = malloc((finish - start + 1) * sizeof(char));
-	while (start < finish)
-		str[i++] = s[start++];
-	str[i] = '\0';
-	return (str);
+	count = 0;
+	str_num = str_count(s, c);
+	while (i < str_num)
+	{
+		while (s[count] == c && s[count])
+			count++;
+		string = ft_strlength(s, c, count);
+		len = ft_strlen(string);
+		split[i] = (char *)malloc(len + 1);
+		if (!split[i])
+			return (NULL);
+		ft_strcpy(split[i], string);
+		count += len;
+		i++;
+		free(string);
+		string = NULL;
+	}
+	return (split);
 }
 
-char	**ft_split(const char *s, char c)
+char	**ft_split(char const *s, char c)
 {
-	size_t	i;
-	size_t	k;
-	char	**arr;
-	int		index;
+	char	**split;
+	char	**flip;
+	int		str_num;
 
-	arr = malloc((count_words(s, c) + 1) * sizeof(char *));
-	if (!s || !arr)
-		return (0);
-	i = 0;
-	k = 0;
-	index = -1;
-	while (i <= ft_strlen(s))
+	str_num = str_count(s, c);
+	split = (char **)malloc((str_num + 1) * sizeof(char *));
+	if (!split)
+		return (NULL);
+	split[str_num] = NULL;
+	split = creat_splits(s, split, c);
+	if (creat_splits(s, split, c) == NULL)
 	{
-		if (s[i] != c && index < 0)
-			index = i;
-		else if ((s[i] == c || s[i] == '\0') && index >= 0)
+		flip = split;
+		while (*flip)
 		{
-			arr[k++] = word_str(s, index, i);
-			index = -1;
+			free (*flip);
+			flip++;
 		}
-		i++;
+		free (split);
+		split = NULL;
 	}
-	arr[k] = 0;
-	return (arr);
+	return (split);
 }

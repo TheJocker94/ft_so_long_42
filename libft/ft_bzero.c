@@ -3,25 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgirardi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ocastell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/11 11:39:16 by mgirardi          #+#    #+#             */
-/*   Updated: 2022/10/11 18:15:12 by mgirardi         ###   ########.fr       */
+/*   Created: 2022/10/04 14:00:38 by ocastell          #+#    #+#             */
+/*   Updated: 2022/10/08 15:18:15 by ocastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {
 	size_t	i;
-	char	*c;
+	char	*pt;
 
-	c = s;
+	pt = (char *)s;
 	i = 0;
 	while (i < n)
-	{
-		c[i] = 0;
+	{	
+		pt[i] = '\0';
 		i++;
 	}
 }
+/*
+#include<stdio.h>
+#include<string.h>
+
+int main()
+{
+	char str[]="puzza di fogna";
+	unsigned int n = 8;
+	ft_btzero(str,c, n);
+	//btzero(str, c, n);
+	printf("%s\n", str);
+}
+*/

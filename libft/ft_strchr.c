@@ -3,25 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgirardi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ocastell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/11 14:49:39 by mgirardi          #+#    #+#             */
-/*   Updated: 2022/10/11 18:04:16 by mgirardi         ###   ########.fr       */
+/*   Created: 2022/10/04 15:51:19 by ocastell          #+#    #+#             */
+/*   Updated: 2022/10/04 15:52:31 by ocastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
 char	*ft_strchr(const char *s, int c)
 {
-	char	*ptr;
+	char	*str;
 
-	ptr = (char *) s;
-	while (*ptr != c)
+	str = (char *)s;
+	while (*str != 0)
 	{
-		if (*ptr == 0)
-			return (NULL);
-		ptr++;
+		if (*str == (unsigned char)c)
+			return (str);
+		str++;
 	}
-	return (ptr);
+	if (*str == c)
+		return (str);
+	return (0);
 }
+/*
+#include<stdio.h>
+#include<string.h>
+
+int main()
+{
+	const char s[]="rutto poderoso";
+	int c = 'p';
+	
+	printf("%s", ft_strchr(s, c));
+}*/

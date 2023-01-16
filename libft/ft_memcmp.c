@@ -3,35 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgirardi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ocastell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 15:25:40 by mgirardi          #+#    #+#             */
-/*   Updated: 2022/10/14 18:25:57 by mgirardi         ###   ########.fr       */
+/*   Created: 2022/10/08 19:25:51 by ocastell          #+#    #+#             */
+/*   Updated: 2022/10/08 19:34:24 by ocastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
 int	ft_memcmp(const void *str1, const void *str2, size_t n)
 {
-	unsigned char	*s1;
-	unsigned char	*s2;
+	unsigned char	*ptr1;
+	unsigned char	*ptr2;
 	size_t			i;
 
-	s2 = (unsigned char *)str2;
-	s1 = (unsigned char *)str1;
 	i = 0;
-	while (i < n)
+	ptr1 = (unsigned char *)str1;
+	ptr2 = (unsigned char *)str2;
+	if (ptr1 == ptr2)
+		return (0);
+	while (n > 0)
 	{
-		if (((unsigned char *)s1)[i] > ((unsigned char *)s2)[i])
+		if (ptr1[i] == ptr2[i])
 		{
+			i++;
+		}
+		else if (ptr1[i] > ptr2[i])
 			return (1);
-		}
-		else if (((unsigned char *)s1)[i] < ((unsigned char *)s2)[i])
-		{
+		else
 			return (-1);
-		}
-		i++;
+		n--;
 	}
 	return (0);
 }

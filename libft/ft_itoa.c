@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgirardi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ocastell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 17:52:33 by mgirardi          #+#    #+#             */
-/*   Updated: 2022/10/12 19:30:48 by mgirardi         ###   ########.fr       */
+/*   Created: 2022/10/11 11:56:22 by ocastell          #+#    #+#             */
+/*   Updated: 2022/10/11 11:57:04 by ocastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
 size_t	ft_count(long int i)
@@ -71,3 +70,10 @@ char	*ft_itoa(int n)
 	ft_logic(s, count, i, n);
 	return (s);
 }
+/*
+int main()
+{
+	printf("%s\n", ft_itoa(0));
+	printf("%s\n", ft_itoa(894512));
+	printf("%s\n", ft_itoa(-23156));
+}*/

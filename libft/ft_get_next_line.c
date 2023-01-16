@@ -1,100 +1,106 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgirardi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ocastell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 14:11:22 by mgirardi          #+#    #+#             */
-/*   Updated: 2022/11/10 14:11:25 by mgirardi         ###   ########.fr       */
+/*   Created: 2022/11/03 10:10:32 by ocastell          #+#    #+#             */
+/*   Updated: 2022/11/03 10:10:35 by ocastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_prossima_linea(char *stringa)
+char	*ft_next_line(char *buffer)
 {
-	char	*linea;
 	int		i;
 	int		j;
+	char	*line;
 
+	i = 0;
 	j = 0;
-	i = 0;
-	while (stringa[i] && (stringa[i] != '\n'))
+	while (buffer[i] && buffer[i] != '\n')
 		i++;
-	if (stringa[i] == '\0')
+	if (!buffer[i])
 	{
-		free (stringa);
+		free(buffer);
 		return (NULL);
 	}
-	linea = ft_calloc((ft_strlen(stringa) - i + 1), (sizeof(char)));
-	i = i + 1;
-	while (stringa[i])
-		linea[j++] = stringa[i++];
-	free (stringa);
-	return (linea);
+	line = ft_calloc((ft_strlen(buffer) - i + 1), sizeof(char));
+	i++;
+	while (buffer[i])
+		line[j++] = buffer[i++];
+	free(buffer);
+	return (line);
 }
 
-char	*ft_prima_linea(char *stringa)
+char	*ft_free(char *s1, char *s2)
 {
-	char	*linea;
+	char	*str;
+
+	str = ft_strjoin(s1, s2);
+	free(s1);
+	return (str);
+}
+
+char	*ft_get_line(char *buffer)
+{
+	char	*line;
 	int		i;
 
 	i = 0;
-	if (!stringa[i])
+	if (!buffer[i])
 		return (NULL);
-	while (stringa[i] && (stringa[i] != '\n'))
+	while (buffer[i] && buffer[i] != '\n')
 		i++;
-	if (stringa[i] == '\n')
-		i++;
-	linea = ft_calloc((i + 1), sizeof(char));
+	line = ft_calloc(i + 2, sizeof(char));
 	i = 0;
-	while (stringa[i] && (stringa[i] != '\n'))
+	while (buffer[i] && buffer[i] != '\n')
 	{
-		linea[i] = stringa[i];
+		line[i] = buffer[i];
 		i++;
 	}
-	if (stringa[i] == '\n')
-		linea[i] = '\n';
-	return (linea);
+	if (buffer[i] && buffer[i] == '\n')
+		line[i] = '\n';
+	return (line);
 }
 
-char	*ft_leggi_file(char *str, int fd )
+char	*ft_read_file(int fd, char *str)
 {
+	char	*buffer;
 	int		i;
-	char	*buff;
 
 	if (!str)
 		str = ft_calloc(1, 1);
-	buff = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
+	buffer = ft_calloc(BUFFER_SIZE +1, sizeof(char));
 	i = 1;
 	while (i > 0)
 	{
-		if (ft_strchr(buff, '\n'))
-			break ;
-		i = read(fd, buff, BUFFER_SIZE);
+		i = read(fd, buffer, BUFFER_SIZE);
 		if (i < 0)
 		{
-			free (buff);
+			free(buffer);
 			return (NULL);
-		}		
-		buff[i] = '\0';
-		str = ft_strjoinf(str, buff);
+		}
+		buffer[i] = '\0';
+		str = ft_free(str, buffer);
+		if (ft_strchr(buffer, '\n'))
+			break ;
 	}
-	free (buff);
+	free(buffer);
 	return (str);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*stringa;
-	char		*linea;
+	static char	*buffer[FOPEN_MAX];
+	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	stringa = ft_leggi_file(stringa, fd);
-	linea = ft_prima_linea(stringa);
-	stringa = ft_prossima_linea(stringa);
-	return (linea);
+	buffer[fd] = ft_read_file(fd, buffer[fd]);
+	line = ft_get_line(buffer[fd]);
+	buffer[fd] = ft_next_line(buffer[fd]);
+	return (line);
 }
-

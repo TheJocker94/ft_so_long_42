@@ -3,44 +3,53 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mgirardi <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: ocastell <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/10/11 17:36:57 by mgirardi          #+#    #+#              #
-#    Updated: 2022/10/11 17:37:02 by mgirardi         ###   ########.fr        #
+#    Created: 2022/10/08 11:29:44 by ocastell          #+#    #+#              #
+#    Updated: 2022/10/08 11:39:02 by ocastell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-
+CFLAGS = -Wall -Wextra -Werror
+INC = -I.
+AR = ar
+ARF = -rcs
 NAME = libft.a
 
-SRC := $(shell find ! -name "ft_lst*.c" -name "*.c")
+MAN = isalpha isdigit isalnum isascii isprint strlen memset bzero memcpy\
+		memmove strlcpy strlcat toupper tolower strchr strrchr strncmp memchr\
+		memcmp strnstr atoi calloc strdup substr strjoin strtrim split itoa\
+		strmapi striteri putchar_fd putstr_fd putendl_fd putnbr_fd\
+		printf print_p print_s putchars_fd putnbrs_fd putnbru_fd\
+		putnbr_X putstrs_fd putnbr_base_fd get_next_line\
+		lstnew lstadd_front lstsize lstlast lstadd_back lstdelone lstclear\
+		lstiter lstmap strjoinf
+MANFC = $(addprefix ft_,$(addsuffix .c, $(MAN)))
+MANO = $(MANFC:.c=.o)
 
-BNS := $(wildcard ft_lst*.c)
-
-OBJ_S = $(SRC:.c=.o)
-
-OBJ_B = $(BNS:.c=.o)
-
-CFLAG = -Wall -Werror -Wextra
+BON = lstnew lstadd_front lstsize lstlast lstadd_back lstdelone lstclear\
+		lstiter lstmap
+BONFC = $(addprefix ft_,$(addsuffix .c, $(BON)))
+BONO = $(BONFC:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ_S)
-	ar -rcs $@ $^
+$(NAME): $(MANO)
+	$(AR) $(ARF) $@ $^
 
-%.o:%.c
-	@$(CC) -c $(CFLAG) -I. $< -o $@
+%.o: %.c
+	@$(CC) -c $(CFLAGS) $(INC) $< -o $@
 
 clean:
-	/bin/rm -f *.o
+	@rm -f $(MANO) $(BONO)
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 
-bonus: $(OBJ_B)
-	ar -rcs $(NAME) $^
+bonus:	$(BONO)
+	$(AR) $(ARF) $(NAME) $^
 
-.PHONY: all clean fclean re bonus
+.PHONY: bonus all clean fclean re

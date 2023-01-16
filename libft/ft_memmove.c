@@ -3,39 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgirardi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ocastell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/11 13:33:36 by mgirardi          #+#    #+#             */
-/*   Updated: 2022/10/11 13:57:30 by mgirardi         ###   ########.fr       */
+/*   Created: 2022/10/04 14:06:50 by ocastell          #+#    #+#             */
+/*   Updated: 2022/10/08 16:25:59 by ocastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	char	*src_p;
-	char	*dest_p;
+	char	*s;
+	char	*d;
 	size_t	i;
 
+	s = (char *)src;
+	d = (char *)dst;
 	i = 0;
-	src_p = (char *)src;
-	dest_p = (char *)dest;
-	if (dest_p > src_p)
-	{
-		while (n > 0)
-		{
-			n--;
-			dest_p[n] = src_p[n];
-		}
-	}
+	if (d > s)
+		while (len-- > 0)
+			d[len] = s[len];
 	else
 	{
-		while (i < n)
+		while (i < len)
 		{
-			dest_p[i] = src_p[i];
+			d[i] = s[i];
 			i++;
 		}
 	}
-	return (dest);
+	return (dst);
 }
+/*
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+char dest[]="puzza di fogna";
+const char src[]="bastarda puttana";
+unsigned int n= 0;
+ft_memmove(dest, src, n);
+//memmove(dest, src, n);
+printf("%s\n", dest);
+}*/

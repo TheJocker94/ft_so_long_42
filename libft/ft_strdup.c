@@ -3,29 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgirardi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ocastell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 16:10:46 by mgirardi          #+#    #+#             */
-/*   Updated: 2022/10/12 16:17:42 by mgirardi         ###   ########.fr       */
+/*   Created: 2022/09/20 01:57:09 by ocastell          #+#    #+#             */
+/*   Updated: 2022/10/11 16:16:26 by ocastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
-char	*ft_strdup(const char *string)
+char	*ft_strdup(const char *src)
 {
+	char	*dest;
+	char	*d;
 	int		i;
-	char	*str;
 
 	i = 0;
-	str = (char *)malloc(sizeof(char) * (ft_strlen(string) + 1));
-	if (!str)
+	dest = malloc(sizeof(char) * ft_strlen(src) +1);
+	d = (char *)src;
+	if (!dest)
 		return (NULL);
-	while (string[i] != '\0')
+	while (d[i])
 	{
-		str[i] = string[i];
+		dest[i] = d[i];
 		i++;
 	}
-	str[i] = '\0';
-	return (str);
+	dest[i] = '\0';
+	return (dest);
 }
+/*
+int	main(int argc, char*argv[])
+{
+	if (argc == 2)
+		printf("%s\n", ft_strdup(argv[1]));
+}*/

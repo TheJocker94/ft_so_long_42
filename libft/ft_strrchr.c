@@ -3,28 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgirardi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ocastell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/11 15:44:35 by mgirardi          #+#    #+#             */
-/*   Updated: 2022/10/11 20:43:08 by mgirardi         ###   ########.fr       */
+/*   Created: 2022/10/08 17:48:36 by ocastell          #+#    #+#             */
+/*   Updated: 2022/10/08 17:49:51 by ocastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*ft_strrchr(const char *str, int ch)
+char	*ft_strrchr(const char *s, int c)
 {
-	char	*ptr;
-	int		i;
+	char	*i;
 
-	ptr = (char *)str;
-	i = ft_strlen(str);
-	while (ptr[i] != ch && i > 0)
+	i = 0;
+	while (*s)
 	{
-		i--;
+		if (*s == (unsigned char)c)
+			i = (char *)s;
+		s++;
 	}
-	if (ptr[i] == ch)
-		return (&ptr[i]);
-	else
-		return (NULL);
+	if (i)
+		return (i);
+	if (c == '\0')
+		return ((char *)s);
+	return (0);
 }
+/*
+#include <stdio.h>
+int main()
+{
+	char a[] = "acd";
+	printf("%s ", ft_strrchr(a, 'b'));
+}
+*/

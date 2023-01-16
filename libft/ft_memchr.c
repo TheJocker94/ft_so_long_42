@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgirardi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ocastell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 14:54:36 by mgirardi          #+#    #+#             */
-/*   Updated: 2022/10/14 18:24:22 by mgirardi         ###   ########.fr       */
+/*   Created: 2022/10/08 19:15:44 by ocastell          #+#    #+#             */
+/*   Updated: 2022/10/08 19:19:00 by ocastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
 void	*ft_memchr(const void *str, int c, size_t n)
@@ -18,14 +17,14 @@ void	*ft_memchr(const void *str, int c, size_t n)
 	size_t	i;
 
 	i = 0;
-	ptr = (void *)str;
-	if (ptr == NULL)
-		return (NULL);
+	ptr = (char *)str;
 	while (i < n)
 	{
-		if (ptr[i] == (char)c)
-			return (&ptr[i]);
-		i++;
+		if (*ptr == (char)c)
+			return (ptr);
+		else
+			i++;
+		ptr++;
 	}
-	return (NULL);
+	return (0);
 }

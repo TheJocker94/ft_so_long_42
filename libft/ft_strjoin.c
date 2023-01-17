@@ -19,7 +19,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	k = 0;
 	i = 0;
-	str = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	str = malloc((ft_strlen(s1) + ft_strlen(s2) + 2) * sizeof(char));
 	if (!str)
 		return (NULL);
 	while (s1[i])
@@ -34,5 +34,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		k++;
 	}
 	str[i] = '\0';
+	str[i + 1] = '\0';
 	return (str);
 }

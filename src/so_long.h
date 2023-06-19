@@ -19,7 +19,7 @@
 # include "../mlx/mlx.h"
 
 // STRUCTS
-# define SIZE 64
+# define SIZE 32
 # define BOR_X 40
 # define BOR_Y 40
 # define MLX_SYNC_IMAGE_WRITABLE	1

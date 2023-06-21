@@ -90,11 +90,13 @@ void	check_valid(t_mlx *init)
 				&& init->map[y][x].type != '0')
 			{
 				ft_putstr_fd("Error! Invalid map\n", 2);
+				free(init->path);
 				ft_close_error(init);
 			}
 			if (init->check.enemy > 1)
 			{
 				ft_putstr_fd("Error! Invalid map\n", 2);
+				free(init->path);
 				ft_close_error(init);
 			}
 		}

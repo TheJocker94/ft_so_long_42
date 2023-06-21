@@ -36,6 +36,7 @@ void	ft_counter(t_mlx *init)
 
 	move = ft_itoa(init->moves);
 	col = ft_itoa(init->collectible);
+	printf("%p and hello %p\n", init->mlx, init->win);
 	mlx_string_put(init->mlx, init->win, 20, 15, 0xffffffff, "Moves :");
 	mlx_string_put(init->mlx, init->win, 80, 15, 0xffffffff, move);
 	mlx_string_put(init->mlx, init->win, 150, 15, 0xffffffff, "Collectible :");

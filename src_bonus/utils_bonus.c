@@ -70,13 +70,21 @@ int	check_map(char *map, t_mlx *init)
 		}
 		check_map_logic(init, map, f, len);
 		if (map[i] == '\n' && map[i + 1] == '\0')
+		{
+			free(init->path);
 			ft_error_map("Error! Invalid map\n", map);
+			ft_print_screen_error(init);
+		}
 		i++;
 	}
 	if ((init->check.exit > 1 || init->check.player > 1)
 		|| (init->check.exit == 0 || init->check.player == 0
 			|| init->check.col == 0))
+	{
+		free(init->path);
 		ft_error_map("Error! Invalid map\n", map);
+		ft_print_screen_error(init);
+	}
 	return (1);
 }
 
@@ -86,7 +94,11 @@ void	check_map_logic(t_mlx *init, char *map, int f, int len)
 	{
 		init->check.line_2 = len;
 		if (init->check.line_2 != init->check.line_1)
+		{
+			free(init->path);
 			ft_error_map("Error! Invalid map\n", map);
+			ft_print_screen_error(init);
+		}
 		len = 0;
 	}
 	else if (f == 1)
@@ -96,3 +108,10 @@ void	check_map_logic(t_mlx *init, char *map, int f, int len)
 		len = 0;
 	}
 }
+
+// mlx_string_put(init->menu.mlx, init->menu.wind, 0xffffffff, 0, 0, " _________          .__                         ");
+// 	mlx_string_put(init->menu.mlx, init->menu.wind, 0xffffffff, 0, 20, " /   _____/ ____     |  |   ____   ____    ____  ");
+// 	mlx_string_put(init->menu.mlx, init->menu.wind, 0xffffffff, 0, 40, " \\_____  \\ /  _ \\    |  |  /  _ \\ /    \\  / ___\\ ");
+// 	mlx_string_put(init->menu.mlx, init->menu.wind, 0xffffffff, 0, 60, "\n /        (  <_> )   |  |_(  <_> )   |  \\/ /_/  >");
+// 	mlx_string_put(init->menu.mlx, init->menu.wind, 0xffffffff, 0, 80, "/_______  /\\____/____|____/\\____/|___|  /\\___  / ");
+// 	mlx_string_put(init->menu.mlx, init->menu.wind, 0xffffffff, 0, 100, "        \\/     /_____/                \\//_____/  ");

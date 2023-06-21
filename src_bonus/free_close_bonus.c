@@ -32,6 +32,7 @@ int	ft_close(t_mlx *init)
 	mlx_destroy_window(init->mlx, init->win);
 	mlx_destroy_display(init->mlx);
 	free(init->mlx);
+	free(init->path);
 	ft_freemap(init);
 	exit(0);
 	return (0);

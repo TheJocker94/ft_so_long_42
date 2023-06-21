@@ -59,7 +59,7 @@ $(OBJS_DIR)%.o : %.c src/so_long.h
 	@$(CC) $(CC_FLAGS) -c $< -o $@
 	@printf	"\033[2K\r${BLU}[BUILD - $(NAME)]${RST} '$<' $(END)"
 
-$(OBJS_DIR_B)%.o : %.c src_bonus/so_long_bonus.h
+$(OBJS_DIR_B)%.o : %.c src_bonus/so_long_bonus.h lasera
 	@mkdir -p $(OBJS_DIR_B)
 	@mkdir -p $(OBJS_DIR_B)src_bonus
 	@$(CC) $(CC_FLAGS) -c $< -o $@
@@ -78,8 +78,10 @@ all: $(NAME)
 bonus:	$(NAME_B)
 
 maker:
-	make -C mlx
+	@make -C mlx
 	@make -C libft
+lasera:
+	cd map && ls *.ber -a > ../txt/map.txt
 
 clean:
 	@rm -rf $(OBJS_DIR)
@@ -94,6 +96,6 @@ fclean: clean
 	@rm -f $(NAME_B)
 	@echo "${GRN}[FCLEAN]${RST} done"
 
-re: fclean all
+re: fclean all bonus
 
 .PHONY:		all clean fclean re

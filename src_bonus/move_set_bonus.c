@@ -22,9 +22,9 @@ void	ft_move_up(t_mlx *init, int x, int y)
 		init->collectible -= 1;
 	}
 	else if (init->map[y][x].up->type == 'E' && init->collectible == 0)
-		ft_close(init);
+		ft_print_screen(init, 1);
 	else if (init->map[y][x].up->type == 'F')
-		ft_close(init);
+		ft_print_screen(init, 2);
 	if (init->check.enemy > 0)
 		ft_enemy_mov(init);
 	return ;
@@ -40,9 +40,9 @@ void	ft_move_down(t_mlx *init, int x, int y)
 		init->collectible -= 1;
 	}
 	else if (init->map[y][x].down->type == 'E' && init->collectible == 0)
-		ft_close(init);
+		ft_print_screen(init, 1);
 	else if (init->map[y][x].down->type == 'F')
-		ft_close(init);
+		ft_print_screen(init, 2);
 	if (init->check.enemy > 0)
 		ft_enemy_mov(init);
 	return ;
@@ -58,9 +58,9 @@ void	ft_move_left(t_mlx *init, int x, int y)
 		init->collectible -= 1;
 	}
 	else if (init->map[y][x].left->type == 'E' && init->collectible == 0)
-		ft_close(init);
+		ft_print_screen(init, 1);
 	else if (init->map[y][x].left->type == 'F')
-		ft_close(init);
+		ft_print_screen(init, 2);
 	if (init->check.enemy > 0)
 		ft_enemy_mov(init);
 	return ;
@@ -76,9 +76,9 @@ void	ft_move_right(t_mlx *init, int x, int y)
 		init->collectible -= 1;
 	}
 	else if (init->map[y][x].right->type == 'E' && init->collectible == 0)
-		ft_close(init);
+		ft_print_screen(init, 1);
 	else if (init->map[y][x].right->type == 'F')
-		ft_close(init);
+		ft_print_screen(init, 2);
 	if (init->check.enemy > 0)
 		ft_enemy_mov(init);
 	return ;

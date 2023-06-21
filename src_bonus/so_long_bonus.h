@@ -75,6 +75,20 @@ typedef struct s_coord
 
 }						t_coord;
 
+typedef struct s_menu
+{
+	void				*menu;
+	void				*win;
+	void				*game_over;
+	void				*jump_mic;
+	void				*mlx;
+	void				*wind;
+	char				**map;
+	int					i;
+	int					i_max;
+	int					flg;
+}					t_menu;
+
 typedef struct s_check
 {
 	int					exit;
@@ -111,10 +125,13 @@ typedef struct struct_mlx
 	t_coord				kingo;
 	t_coord				door;
 	t_coord				enemy;
+	t_menu				menu;
+	char				*path;
 	int					collectible;
 	int					moves;
 	int					x;
 	int					y;
+	int					enter;
 }						t_mlx;
 
 void	ft_move_up(t_mlx *init, int x, int y);
@@ -154,5 +171,9 @@ void	check_valid(t_mlx *init);
 int		check_map(char *map, t_mlx *init);
 void	check_map_logic(t_mlx *init, char *map, int f, int len);
 void	ft_map_render_strano(t_mlx *init, t_tile **tile_map, int x, int y);
+void	ft_funziona(t_mlx *init);
+void	ft_print_screen(t_mlx *init, int p);
+int		ft_splash(int key, t_mlx *init);
+void	ft_print_screen_error(t_mlx *init);
 
 #endif

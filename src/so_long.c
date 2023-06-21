@@ -89,7 +89,7 @@ int	main(int ac, char **av)
 	ft_map_render(&init, init.map, init.x, init.y);
 	mlx_hook(init.win, 17, 0, ft_close, &init);
 	ft_counter(&init);
-	mlx_hook(init.win, 2, 1L<<0, key_input, &init);
+	mlx_hook(init.win, 2, 1L << 0, key_input, &init);
 	mlx_loop(init.mlx);
 	return (0);
 }

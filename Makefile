@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dasereno <dasereno@student.42.fr>          +#+  +:+       +#+         #
+#    By: ocastell <ocastell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/09 13:04:45 by tnard             #+#    #+#              #
-#    Updated: 2022/05/21 16:58:29 by dasereno         ###   ########.fr        #
+#    Updated: 2023/06/21 11:43:44 by ocastell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,10 @@ SRCS_B 	=	src_bonus/so_long_bonus.c \
 			src_bonus/enemy_movement_bonus.c \
 			src_bonus/move_logic_bonus.c \
 			src_bonus/key_input_logic_bonus.c \
-			src_bonus/renderless_bonus.c
+			src_bonus/renderless_bonus.c \
+			src_bonus/screen_bonus.c \
+			src_bonus/menu_bonus.c \
+			src_bonus/utils_2_bonus.c
 
 NAME		= so_long
 NAME_B		= so_long_bonus

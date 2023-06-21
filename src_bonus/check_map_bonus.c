@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocastell <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ocastell <ocastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 18:32:19 by ocastell          #+#    #+#             */
-/*   Updated: 2023/01/17 18:32:22 by ocastell         ###   ########.fr       */
+/*   Updated: 2023/06/21 11:49:38 by ocastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,17 +88,9 @@ void	check_valid(t_mlx *init)
 		{
 			if (init->map[y][x].type != 'P' && init->map[y][x].type != '1'
 				&& init->map[y][x].type != '0')
-			{
-				ft_putstr_fd("Error! Invalid map\n", 2);
-				free(init->path);
-				ft_close_error(init);
-			}
+				ft_print_404(init);
 			if (init->check.enemy > 1)
-			{
-				ft_putstr_fd("Error! Invalid map\n", 2);
-				free(init->path);
-				ft_close_error(init);
-			}
+				ft_print_404(init);
 		}
 		x = init->x;
 	}

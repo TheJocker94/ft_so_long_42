@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocastell <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ocastell <ocastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 18:35:52 by ocastell          #+#    #+#             */
-/*   Updated: 2023/01/17 18:35:55 by ocastell         ###   ########.fr       */
+/*   Updated: 2023/06/21 11:55:11 by ocastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,5 +175,14 @@ void	ft_funziona(t_mlx *init);
 void	ft_print_screen(t_mlx *init, int p);
 int		ft_splash(int key, t_mlx *init);
 void	ft_print_screen_error(t_mlx *init);
+int		ft_splashia(int key, t_mlx *init);
+void	ft_menu(t_mlx *init);
+void	ft_init_menu(t_mlx *init);
+char	*ft_get_map(char *path_ber);
+void	ft_fill_ori_type(t_mlx *init);
+int		ft_menu_key(int keycode, t_mlx *init);
+void	ft_close_menu(t_mlx *init, int flg);
+void	ft_print_404(t_mlx *init);
+void	ft_error_stamp(t_mlx *init, char *map);
 
 #endif

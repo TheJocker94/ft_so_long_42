@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocastell <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ocastell <ocastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 18:36:38 by ocastell          #+#    #+#             */
-/*   Updated: 2023/01/17 18:36:40 by ocastell         ###   ########.fr       */
+/*   Updated: 2023/06/21 11:55:02 by ocastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,21 +70,13 @@ int	check_map(char *map, t_mlx *init)
 		}
 		check_map_logic(init, map, f, len);
 		if (map[i] == '\n' && map[i + 1] == '\0')
-		{
-			free(init->path);
-			ft_error_map("Error! Invalid map\n", map);
-			ft_print_screen_error(init);
-		}
+			ft_error_stamp(init, map);
 		i++;
 	}
 	if ((init->check.exit > 1 || init->check.player > 1)
 		|| (init->check.exit == 0 || init->check.player == 0
 			|| init->check.col == 0))
-	{
-		free(init->path);
-		ft_error_map("Error! Invalid map\n", map);
-		ft_print_screen_error(init);
-	}
+		ft_error_stamp(init, map);
 	return (1);
 }
 
@@ -108,10 +100,3 @@ void	check_map_logic(t_mlx *init, char *map, int f, int len)
 		len = 0;
 	}
 }
-
-// mlx_string_put(init->menu.mlx, init->menu.wind, 0xffffffff, 0, 0, " _________          .__                         ");
-// 	mlx_string_put(init->menu.mlx, init->menu.wind, 0xffffffff, 0, 20, " /   _____/ ____     |  |   ____   ____    ____  ");
-// 	mlx_string_put(init->menu.mlx, init->menu.wind, 0xffffffff, 0, 40, " \\_____  \\ /  _ \\    |  |  /  _ \\ /    \\  / ___\\ ");
-// 	mlx_string_put(init->menu.mlx, init->menu.wind, 0xffffffff, 0, 60, "\n /        (  <_> )   |  |_(  <_> )   |  \\/ /_/  >");
-// 	mlx_string_put(init->menu.mlx, init->menu.wind, 0xffffffff, 0, 80, "/_______  /\\____/____|____/\\____/|___|  /\\___  / ");
-// 	mlx_string_put(init->menu.mlx, init->menu.wind, 0xffffffff, 0, 100, "        \\/     /_____/                \\//_____/  ");
